@@ -28,13 +28,24 @@ namespace SW4BED_Man_Ass_3.Pages
         {
 	        [Microsoft.Build.Framework.Required]
 	        [DataType(DataType.Date)]
-	        public DateTime? Date { get; set; } = DateTime.Today;
+	        public DateTime Date { get; set; } = DateTime.Today;
+
+	        public int Adults { get; set; } = 0;
+	        public int Children { get; set; } = 0;
 
         }
 
         public async Task<IActionResult> OnPostAsync()
         {
-
+	        var guestReserved = new GuestReserved()
+	        {
+		        Adults = Input.Adults,
+		        Children = Input.Children,
+		        Date = Input.Date
+	        };
+            _context.GuestReserveds.Add(guestReserved);
+            _context.SaveChangesAsync();
+            return Page();
         }
         public IActionResult OnGet()
         {
