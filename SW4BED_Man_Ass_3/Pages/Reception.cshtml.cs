@@ -43,7 +43,7 @@ namespace SW4BED_Man_Ass_3.Pages
 		        Children = Input.Children,
 		        Date = Input.Date
 	        };
-            _context.GuestReserveds.Add(guestReserved);
+	        _context.GuestReserveds.Add(guestReserved);
             _context.SaveChangesAsync();
             return Page();
         }
