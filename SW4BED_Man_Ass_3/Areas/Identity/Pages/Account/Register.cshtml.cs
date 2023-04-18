@@ -237,17 +237,17 @@ namespace SW4BED_Man_Ass_3.Areas.Identity.Pages.Account
             {
                 case UserCategory.ReceptionUser:
                     {
-                        var userClaims = new List<Claim> { _claims[0], _claims[2] };
+                        userClaims = new List<Claim> { _claims[0], _claims[2] };
                         return new IdentityUser();
                     }
                 case UserCategory.WaiterUser:
                     {
-                        var userClaims = new List<Claim> { _claims[1], _claims[2] };
+                        userClaims = new List<Claim> { _claims[1], _claims[2] };
                         return new IdentityUser() ;
                     }
                 case UserCategory.KitchenUser:
                     {
-                        var userClaims = new List<Claim> { _claims[2] };
+                        userClaims = new List<Claim> { _claims[2] };
                         return new IdentityUser();
                     }
                 default:
