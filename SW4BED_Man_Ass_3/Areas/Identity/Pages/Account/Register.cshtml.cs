@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Security.Claims;
 using System.Text;
 using System.Text.Encodings.Web;
 using System.Threading;
@@ -52,6 +53,15 @@ namespace SW4BED_Man_Ass_3.Areas.Identity.Pages.Account
             KitchenUser
         }
 
+        public List<Claim> userClaims;
+
+        private readonly Claim[] _claims = new Claim[3]
+        {
+            new Claim("Reception","true" ),
+            new Claim("Waiter","true"),
+            new Claim("Cook","true")
+        };
+
         /// <summary>
         ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
         ///     directly from your code. This API may change or be removed in future releases.
@@ -89,7 +99,7 @@ namespace SW4BED_Man_Ass_3.Areas.Identity.Pages.Account
 
             [Required]
             [Display(Name = "UserCategory")]
-            public string UserCategory { get; set; }
+            public UserCategory UserCategory { get; set; }
 
 
 
@@ -126,7 +136,12 @@ namespace SW4BED_Man_Ass_3.Areas.Identity.Pages.Account
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
-                var user = CreateUser();
+                var user = CreateUser(Input.UserCategory);
+
+                foreach (var item in userClaims)
+                {
+                    await _userManager.AddClaimAsync(user, item);
+                }
 
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
@@ -181,6 +196,65 @@ namespace SW4BED_Man_Ass_3.Areas.Identity.Pages.Account
                     $"override the register page in /Areas/Identity/Pages/Account/Register.cshtml");
             }
         }
+
+        //private IdentityUser CreateUser(UserCategory category)
+        //{
+        //    try
+        //    {
+        //        switch (category)
+        //        {
+        //            case UserCategory.ReceptionUser:
+        //                {
+        //                    userClaims.Add(_claims[0]);
+        //                    userClaims.Add(_claims[2]);
+        //                    return new IdentityUser();
+        //                }
+        //            case UserCategory.WaiterUser:
+        //                {
+        //                    userClaims.Add(_claims[1]);
+        //                    userClaims.Add(_claims[2]);
+        //                    return new IdentityUser();
+        //                }
+        //            case UserCategory.KitchenUser:
+        //                {
+        //                    userClaims.Add(_claims[2]);
+        //                    return new IdentityUser();
+        //                }
+
+        //                throw new InvalidOperationException();
+        //        }
+        //    }
+        //    catch(Exception ex)
+        //    {
+        //        Console.WriteLine(ex.Message);
+        //        return null;
+        //    }
+        //}
+
+        private IdentityUser CreateUser(UserCategory category)
+        {
+            switch (category)
+            {
+                case UserCategory.ReceptionUser:
+                    {
+                        var userClaims = new List<Claim> { _claims[0], _claims[2] };
+                        return new IdentityUser();
+                    }
+                case UserCategory.WaiterUser:
+                    {
+                        var userClaims = new List<Claim> { _claims[1], _claims[2] };
+                        return new IdentityUser() ;
+                    }
+                case UserCategory.KitchenUser:
+                    {
+                        var userClaims = new List<Claim> { _claims[2] };
+                        return new IdentityUser();
+                    }
+                default:
+                    throw new InvalidOperationException("Invalid UserCategory value.");
+            }
+        }
+
 
         private IUserEmailStore<IdentityUser> GetEmailStore()
         {

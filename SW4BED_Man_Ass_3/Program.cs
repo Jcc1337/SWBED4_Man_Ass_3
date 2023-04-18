@@ -14,6 +14,19 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.Requ
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddRazorPages();
 
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("Reception",
+        policyBuilder => policyBuilder.RequireClaim("Reception")
+    );
+    options.AddPolicy("Cook",
+        policyBuilder => policyBuilder.RequireClaim("Cook"));
+
+    options.AddPolicy("Waiter",
+        policyBuilder => policyBuilder.RequireClaim("Waiter")
+    );
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
