@@ -45,6 +45,13 @@ namespace SW4BED_Man_Ass_3.Areas.Identity.Pages.Account
             _emailSender = emailSender;
         }
 
+        public enum UserCategory
+        {
+            ReceptionUser,
+            WaiterUser,
+            KitchenUser
+        }
+
         /// <summary>
         ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
         ///     directly from your code. This API may change or be removed in future releases.
@@ -78,6 +85,13 @@ namespace SW4BED_Man_Ass_3.Areas.Identity.Pages.Account
             [EmailAddress]
             [Display(Name = "Email")]
             public string Email { get; set; }
+
+
+            [Required]
+            [Display(Name = "UserCategory")]
+            public string UserCategory { get; set; }
+
+
 
             /// <summary>
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
