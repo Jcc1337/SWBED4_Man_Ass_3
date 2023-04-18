@@ -10,18 +10,21 @@
 <h4>Guest</h4>
 <hr />
 <div class="row">
-    <div class="col-md-4">
-        <form method="post">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-	        <h3>Date: </h3>
-	        <input asp-for="Input.Date"/>
-	        <h3>Adults: </h3>
-	        <input asp-for="Input.Adults"/>
-	        <h3>Children: </h3>
-            <input asp-for="Input.Children"/>
-        </form>
-    </div>
+	<div class="col-md-4">
+		<form method="post">
+			<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+			<h3>Date: </h3>
+			<input asp-for="Input.Date"/>
+			<h3>Adults: </h3>
+			<input asp-for="Input.Adults"/>
+			<h3>Children: </h3>
+			<input asp-for="Input.Children"/>
+			<button type="submit" class="w-10 btn btn-lg btn-primary">Submit</button>
+		</form>
+	</div>
+	
 </div>
+
 
 <div>
     <a asp-page="Index">Back to List</a>
