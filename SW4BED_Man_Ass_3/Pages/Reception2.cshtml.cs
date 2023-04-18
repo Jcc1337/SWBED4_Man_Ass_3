@@ -10,7 +10,14 @@ namespace SW4BED_Man_Ass_3.Pages
     {
         private readonly ApplicationDbContext _context;
         public string DateNow { get; set; }
-        //public DisplayModel model { get; set; }
+        public ListDisplay listDisplay { get; set; }
+
+        public class ListDisplay
+        {
+            public int RoomNumber { get; set; } = 0;
+            public int Adults { get; set; } = 0;
+            public int Children { get; set; } = 0;
+        }
 
         public async Task OnGetAsync()
         {
