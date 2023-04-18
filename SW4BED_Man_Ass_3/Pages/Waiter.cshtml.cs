@@ -25,21 +25,24 @@ namespace SW4BED_Man_Ass_3.Pages
         }
 
         [BindProperty]
-        public Guest Guest { get; set; } = default!;
+        public GuestCheckIn Guest { get; set; } = default!;
+        
         
 
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
         {
-          if (!ModelState.IsValid || _context.Guests == null || Guest == null)
+          if (!ModelState.IsValid || _context.GuestReserveds == null || Guest == null)
             {
                 return Page();
             }
 
-            _context.Guests.Add(Guest);
+            _context.GuestCheckIns.Add(Guest);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");
         }
+
     }
 }
+
