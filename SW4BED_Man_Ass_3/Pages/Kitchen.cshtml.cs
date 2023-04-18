@@ -53,13 +53,13 @@ namespace SW4BED_Man_Ass_3.Pages
             }
 
             var dbCheckedIn = await _context.GuestCheckIns
-                .Where(b => .Where(b => b.Date.Day == dateNow.Date.Day && b.Date.Month == dateNow.Date.Month)
-                .ToListAsync());
+                .Where(b => b.Date.Day == dateNow.Date.Day && b.Date.Month == dateNow.Date.Month)
+                .ToListAsync();
 
             foreach (var item in dbCheckedIn)
             {
-                adultsCheckedIn += item.adults;
-                childrenCheckedIn += item.children;
+                adultsCheckedIn += item.Adults;
+                childrenCheckedIn += item.Children;
             }
 
 
@@ -107,4 +107,3 @@ namespace SW4BED_Man_Ass_3.Pages
 
         
     }
-}
