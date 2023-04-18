@@ -13,34 +13,12 @@
     <div class="col-md-4">
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Guest.guestName" class="control-label"></label>
-                <input asp-for="Guest.guestName" class="form-control" />
-                <span asp-validation-for="Guest.guestName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Guest.age" class="control-label"></label>
-                <input asp-for="Guest.age" class="form-control" />
-                <span asp-validation-for="Guest.age" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Guest.roomNumber" class="control-label"></label>
-                <input asp-for="Guest.roomNumber" class="form-control" />
-                <span asp-validation-for="Guest.roomNumber" class="text-danger"></span>
-            </div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="Guest.hasReserved" /> @Html.DisplayNameFor(model => model.Guest.hasReserved)
-                </label>
-            </div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="Guest.hasCheckedIn" /> @Html.DisplayNameFor(model => model.Guest.hasCheckedIn)
-                </label>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
+	        <h3>Date: </h3>
+	        <input asp-for="Input.Date"/>
+	        <h3>Adults: </h3>
+	        <input asp-for="Input.Adults"/>
+	        <h3>Children: </h3>
+            <input asp-for="Input.Children"/>
         </form>
     </div>
 </div>

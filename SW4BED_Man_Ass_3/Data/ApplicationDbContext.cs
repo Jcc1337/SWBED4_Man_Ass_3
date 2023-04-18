@@ -10,11 +10,13 @@ namespace SW4BED_Man_Ass_3.Data
             : base(options)
         {
         }
-        public DbSet<Guest> Guests => Set<Guest>();
+        public DbSet<GuestCheckIn> GuestCheckIns => Set<GuestCheckIn>();
+        public DbSet<GuestReserved> GuestReserveds => Set<GuestReserved>();
+
 		//protected override void OnModelCreating(ModelBuilder builder)
 		//{
 		//	base.OnModelCreating(builder);
-  //          ModelBuilder.Entity<Guest>().HasData(new Guest { });
+		//          ModelBuilder.Entity<Guest>().HasData(new Guest { });
 		//}
 	}
 }
