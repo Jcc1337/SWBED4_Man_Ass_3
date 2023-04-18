@@ -1,6 +1,8 @@
-﻿namespace SW4BED_Man_Ass_3.Models
+﻿using System.Collections;
+
+namespace SW4BED_Man_Ass_3.Models
 {
-	public class Guest
+	public class Guest : IEnumerable
 	{
 		public int GuestID { get; set; }
 		public string? guestName { get; set; }
