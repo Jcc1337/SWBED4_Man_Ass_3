@@ -2,3 +2,38 @@
 @model SW4BED_Man_Ass_3.Pages.Reception2Model
 @{
 }
+<div>
+    <h2> Who had breakfast on: @Model.DateNow</h2>
+</div>
+<table class="table">
+    <thead>
+    <tr>
+        <th>
+            Room Number
+        </th>
+        <th>
+            Adults
+        </th>
+        <th>
+            Children
+        </th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model.GuestCheckedIn)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.RoomNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Adults)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Children)
+            </td>            
+        </tr>
+    }
+    </tbody>
+</table>
