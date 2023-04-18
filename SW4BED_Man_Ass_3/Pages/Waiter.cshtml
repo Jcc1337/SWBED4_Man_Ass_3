@@ -14,30 +14,31 @@
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="Guest.guestName" class="control-label"></label>
-                <input asp-for="Guest.guestName" class="form-control" />
-                <span asp-validation-for="Guest.guestName" class="text-danger"></span>
+                <label asp-for="Guest.RoomNumber" class="control-label">Room Number</label>
+                <input asp-for="Guest.RoomNumber" class="form-control" />
+                <span asp-validation-for="Guest.RoomNumber" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Guest.age" class="control-label"></label>
-                <input asp-for="Guest.age" class="form-control" />
-                <span asp-validation-for="Guest.age" class="text-danger"></span>
+                <label asp-for="Guest.Adults" class="control-label">Adults</label>
+                <input asp-for="Guest.Adults" class="form-control" />
+                <span asp-validation-for="Guest.Adults" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Guest.roomNumber" class="control-label"></label>
-                <input asp-for="Guest.roomNumber" class="form-control" />
-                <span asp-validation-for="Guest.roomNumber" class="text-danger"></span>
+                <label asp-for="Guest.Children" class="control-label">Children</label>
+                <input asp-for="Guest.Children" class="form-control" />
+                <span asp-validation-for="Guest.Children" class="text-danger"></span>
             </div>
+            @*
             <div class="form-group form-check">
                 <label class="form-check-label">
-                    <input class="form-check-input" asp-for="Guest.hasReserved" /> @Html.DisplayNameFor(model => model.Guest.hasReserved)
+                    <input class="form-check-input" asp-for="GuestRoom." /> @Html.DisplayNameFor(model => model.Guest.hasReserved)
                 </label>
             </div>
             <div class="form-group form-check">
                 <label class="form-check-label">
                     <input class="form-check-input" asp-for="Guest.hasCheckedIn" /> @Html.DisplayNameFor(model => model.Guest.hasCheckedIn)
                 </label>
-            </div>
+            </div>*@
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
@@ -49,6 +50,3 @@
     <a asp-page="Index">Back to List</a>
 </div>
 
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
