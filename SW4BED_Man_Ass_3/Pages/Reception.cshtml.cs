@@ -45,8 +45,8 @@ namespace SW4BED_Man_Ass_3.Pages
 	        };
 	        _context.GuestReserveds.Add(guestReserved);
             await _context.SaveChangesAsync();
-            return Page();
-        }
+			return RedirectToPage("./Reception");
+		}
         public IActionResult OnGet()
         {
             return Page();
