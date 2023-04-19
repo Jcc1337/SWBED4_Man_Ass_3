@@ -14,19 +14,19 @@
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="Guest.RoomNumber" class="control-label">Room Number</label>
-                <input asp-for="Guest.RoomNumber" class="form-control" />
-                <span asp-validation-for="Guest.RoomNumber" class="text-danger"></span>
+                <label asp-for="Input.Roomnumber" class="control-label">Room Number</label>
+                <input asp-for="Input.Roomnumber" class="form-control" />
+                <span asp-validation-for="Input.Roomnumber" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Guest.Adults" class="control-label">Adults</label>
-                <input asp-for="Guest.Adults" class="form-control" />
-                <span asp-validation-for="Guest.Adults" class="text-danger"></span>
+                <label asp-for="Input.Adults" class="control-label">Adults</label>
+                <input asp-for="Input.Adults" class="form-control" />
+                <span asp-validation-for="Input.Adults" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Guest.Children" class="control-label">Children</label>
-                <input asp-for="Guest.Children" class="form-control" />
-                <span asp-validation-for="Guest.Children" class="text-danger"></span>
+                <label asp-for="Input.Children" class="control-label">Children</label>
+                <input asp-for="Input.Children" class="form-control" />
+                <span asp-validation-for="Input.Children" class="text-danger"></span>
             </div>
             @*
             <div class="form-group form-check">
@@ -50,6 +50,3 @@
     <a asp-page="Index">Back to List</a>
 </div>
 
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
