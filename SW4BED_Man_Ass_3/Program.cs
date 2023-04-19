@@ -101,7 +101,7 @@ internal class Program
 				var claimAdded = userManager.AddClaimAsync(receptionUser, claim).Result;
 			}
 		}
-		else if(userManager.FindByNameAsync(waiterEmail).Result == null)
+		if(userManager.FindByNameAsync(waiterEmail).Result == null)
 		{
 			var waiter = new IdentityUser();
 			waiter.UserName = waiterEmail;
