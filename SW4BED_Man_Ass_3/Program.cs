@@ -18,7 +18,11 @@ internal class Program
 
 		builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false)
 			.AddEntityFrameworkStores<ApplicationDbContext>();
+
 		builder.Services.AddRazorPages();
+
+		builder.Services.AddSignalR();
+
 
 		builder.Services.AddAuthorization(options =>
 		{

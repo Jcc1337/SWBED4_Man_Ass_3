@@ -8,7 +8,9 @@ using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.SignalR;
 using SW4BED_Man_Ass_3.Data;
+using SW4BED_Man_Ass_3.hub;
 using SW4BED_Man_Ass_3.Models;
 
 namespace SW4BED_Man_Ass_3.Pages
@@ -31,9 +33,13 @@ namespace SW4BED_Man_Ass_3.Pages
         
         private readonly SW4BED_Man_Ass_3.Data.ApplicationDbContext _context;
 
-        public WaiterModel(SW4BED_Man_Ass_3.Data.ApplicationDbContext context)
+        private readonly IHubContext<HubKitchen, IHubKitchen> _HubKitchen;
+
+        public WaiterModel(SW4BED_Man_Ass_3.Data.ApplicationDbContext context, IHubContext<HubKitchen, IHubKitchen> HubKitchen)
         {
             _context = context;
+            _HubKitchen = HubKitchen;
+
         }
 
         public IActionResult OnGet()
@@ -56,6 +62,8 @@ namespace SW4BED_Man_Ass_3.Pages
 
             _context.GuestCheckIns.Add(guestCheckin);
             await _context.SaveChangesAsync();
+
+            await _HubKitchen.Clients.All.KitchenReload();
 
             return RedirectToPage("./Waiter");
         }
