@@ -7,7 +7,9 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.SignalR;
 using SW4BED_Man_Ass_3.Data;
+using SW4BED_Man_Ass_3.hub;
 using SW4BED_Man_Ass_3.Models;
 
 namespace SW4BED_Man_Ass_3.Pages
@@ -17,10 +19,13 @@ namespace SW4BED_Man_Ass_3.Pages
     {
         private readonly SW4BED_Man_Ass_3.Data.ApplicationDbContext _context;
 
-        public ReceptionModel(SW4BED_Man_Ass_3.Data.ApplicationDbContext context)
+        private readonly IHubContext<HubKitchen, IHubKitchen> _HubKitchen;
+
+        public ReceptionModel(SW4BED_Man_Ass_3.Data.ApplicationDbContext context, IHubContext<HubKitchen, IHubKitchen> hubkitchen)
         {
             _context = context;
             Input = new InputModel();
+            _HubKitchen = hubkitchen;
         }
         [BindProperty] public InputModel Input { get; set; }
 
@@ -45,7 +50,10 @@ namespace SW4BED_Man_Ass_3.Pages
 	        };
 	        _context.GuestReserveds.Add(guestReserved);
             await _context.SaveChangesAsync();
-			return RedirectToPage("./Reception");
+
+            await _HubKitchen.Clients.All.KitchenReload();
+
+            return RedirectToPage("./Reception");
 		}
         public IActionResult OnGet()
         {

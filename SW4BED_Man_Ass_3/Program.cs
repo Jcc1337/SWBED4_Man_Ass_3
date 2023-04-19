@@ -2,6 +2,7 @@ using System.Security.Claims;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using SW4BED_Man_Ass_3.Data;
+using SW4BED_Man_Ass_3.hub;
 
 internal class Program
 {
@@ -57,7 +58,7 @@ internal class Program
 		app.UseRouting();
 
 		app.UseAuthorization();
-
+		app.MapHub<HubKitchen>("/HubKitchen");
 		app.MapRazorPages();
 
 		using (var scope = app.Services.CreateScope())
