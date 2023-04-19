@@ -52,7 +52,7 @@ namespace SW4BED_Man_Ass_3.Pages
                 childrenExpected += item.Children;
                 
             }
-            totalExpected= adultsExpected+chi;
+            totalExpected= adultsExpected+childrenExpected;
 
             var dbCheckedIn = await _context.GuestCheckIns
                 .Where(b => b.Date.Day == dateNow.Date.Day && b.Date.Month == dateNow.Date.Month)
