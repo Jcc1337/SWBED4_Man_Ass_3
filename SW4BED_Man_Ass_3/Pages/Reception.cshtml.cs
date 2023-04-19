@@ -44,7 +44,7 @@ namespace SW4BED_Man_Ass_3.Pages
 		        Date = Input.Date
 	        };
 	        _context.GuestReserveds.Add(guestReserved);
-            _context.SaveChangesAsync();
+            await _context.SaveChangesAsync();
             return Page();
         }
         public IActionResult OnGet()
