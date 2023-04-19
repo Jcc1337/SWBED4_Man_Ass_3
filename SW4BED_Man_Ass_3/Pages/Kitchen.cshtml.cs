@@ -14,7 +14,7 @@ namespace SW4BED_Man_Ass_3.Pages
 {
 
 
-    [Authorize("Kitchen")]
+    [Authorize("Cook")]
     public class KitchenModel : PageModel
     {
 
