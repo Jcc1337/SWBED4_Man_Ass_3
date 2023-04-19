@@ -5,4 +5,35 @@
     ViewData["Title"] = "Kitchen";
 }
 
-<h1>Kitchen</h1>
+<div class="border border-primary rounded">
+
+    <form class="mx-4 mt-4" method="post">
+        <div class="form-group d-flex mb-4">
+            <input class="form-control" type="date" data-val="true" asp-for="guestReserved.Date" />
+            <button type="submit" class="btn btn-primary">Update</button>
+        </div>
+    </form>
+
+    <div class=" d-flex justify-content-center">
+
+        <div class="m-4">
+            <h3>Expected guests:</h3>
+            <h4>Adults</h4>
+            @Html.DisplayFor(x => x.adultsExpected)
+            <h4>Children</h4>
+            @Html.DisplayFor(x => x.childrenExpected)
+            <h4>Total</h4>
+            @Html.DisplayFor(x => x.totalExpected)
+        </div>
+        <div class="m-4">
+            <h3>Guests checked in:</h3>
+            <h4>Adults</h4>
+            @Html.DisplayFor(x => x.adultsCheckedIn)
+            <h4>Children</h4>
+            @Html.DisplayFor(x => x.childrenCheckedIn)
+        </div>
+    </div>
+    <div class="text-center my-4">
+        <img width="400" src="https://thumbs.dreamstime.com/b/breakfast-buffet-full-continental-english-coffee-orange-juice-salad-croissant-fruit-77238300.jpg" />
+    </div>
+</div>

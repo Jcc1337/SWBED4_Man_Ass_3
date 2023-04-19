@@ -2,52 +2,61 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using SW4BED_Man_Ass_3.Data;
 
-var builder = WebApplication.CreateBuilder(args);
-
-// Add services to the container.
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
-builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseSqlServer(connectionString));
-builder.Services.AddDatabaseDeveloperPageExceptionFilter();
-
-builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false)
-    .AddEntityFrameworkStores<ApplicationDbContext>();
-builder.Services.AddRazorPages();
-
-builder.Services.AddAuthorization(options =>
+internal class Program
 {
-    options.AddPolicy("Reception",
-        policyBuilder => policyBuilder.RequireClaim("Reception")
-    );
-    options.AddPolicy("Cook",
-        policyBuilder => policyBuilder.RequireClaim("Cook"));
+	public static void Main(string[] args)
+	{
+		var builder = WebApplication.CreateBuilder(args);
 
-    options.AddPolicy("Waiter",
-        policyBuilder => policyBuilder.RequireClaim("Waiter")
-    );
-});
+		// Add services to the container.
+		var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ??
+		                       throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
+		builder.Services.AddDbContext<ApplicationDbContext>(options =>
+			options.UseSqlServer(connectionString));
+		builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-var app = builder.Build();
+		builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false)
+			.AddEntityFrameworkStores<ApplicationDbContext>();
+		builder.Services.AddRazorPages();
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseMigrationsEndPoint();
+		builder.Services.AddAuthorization(options =>
+		{
+			options.AddPolicy("Reception",
+				policyBuilder => policyBuilder.RequireClaim("Reception")
+			);
+			options.AddPolicy("Cook",
+				policyBuilder => policyBuilder.RequireClaim("Cook"));
+
+			options.AddPolicy("Waiter",
+				policyBuilder => policyBuilder.RequireClaim("Waiter")
+			);
+		});
+
+		var app = builder.Build();
+
+		// Configure the HTTP request pipeline.
+		if (app.Environment.IsDevelopment())
+		{
+			app.UseMigrationsEndPoint();
+		}
+		else
+		{
+			app.UseExceptionHandler("/Error");
+			// The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+			app.UseHsts();
+		}
+
+		app.UseHttpsRedirection();
+		app.UseStaticFiles();
+
+		app.UseRouting();
+
+		app.UseAuthorization();
+
+		app.MapRazorPages();
+
+		app.Run();
+	}
+
+
 }
-else
-{
-    app.UseExceptionHandler("/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-    app.UseHsts();
-}
-
-app.UseHttpsRedirection();
-app.UseStaticFiles();
-
-app.UseRouting();
-
-app.UseAuthorization();
-
-app.MapRazorPages();
-
-app.Run();
